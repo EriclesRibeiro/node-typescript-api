@@ -1,0 +1,29 @@
+{
+  "name": "typescript-api",
+  "version": "1.0.0",
+  "description": "Aplicação voltada ao aprendizado do typescript voltado para o backend",
+  "main": "index.js",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4",
+    "typescript": "^4.9.4"
+  },
+  "repository": "https://github.com/EriclesRibeiro/node-typescript-api.git",
+  "scripts": {
+    "start:dev": "nodemon --watch \"src/\" --exec \"ts-node src/index.ts\" -e ts",
+    "start": "node build/index.js"
+  },
+  "keywords": [
+    "typescript",
+    "api",
+    "node"
+  ],
+  "author": "Ericles Ribeiro",
+  "license": "ISC"
+}
