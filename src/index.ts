@@ -2,18 +2,31 @@ import express, { Request, Response } from 'express'
 import { config } from 'dotenv'
 import GetUsersController from './controllers/get-users/getUsers'
 import GetUsersRepository from './repositories/get-users/getUsers.repository'
+import MongoClient from './database/mongo'
+import { log } from 'console'
 
-const app = express()
+const main = async () => {
 
-const PORT = process.env.PORT || 8000
+    // Config do dotenv
+    config()
 
-app.get("/users", async (req: Request, res: Response) => {
-    const getUsersRepository = new GetUsersRepository()
-    const getUsersController = new GetUsersController(getUsersRepository)
+    const app = express()
 
-    const response = await getUsersController.handler()
+    const PORT = process.env.PORT || 8000
 
-    res.send(response.body).status(response.statusCode)
-})
+    await MongoClient.connect()
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}`))
+    // Primeira rota com repositorios para obter todos os usuarios
+    app.get("/users", async (req: Request, res: Response) => {
+        const getUsersRepository = new GetUsersRepository()
+        const getUsersController = new GetUsersController(getUsersRepository)
+
+        const response = await getUsersController.handler()
+
+        res.send(response.body).status(response.statusCode)
+    })
+
+    app.listen(PORT, () => log(`.:listening on port ${PORT}:.`))
+}
+
+main()
