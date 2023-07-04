@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import { config } from 'dotenv'
-import GetUsersController from './controllers/get-users/getUsers'
+import GetUsersController from './controllers/get-users/getUsers.controller'
 import GetUsersRepository from './repositories/get-users/getUsers.repository'
 import MongoClient from './database/mongo'
 import { log } from 'console'
