@@ -2,7 +2,7 @@ import { ICreateUserParams, ICreateUserRepository } from "../../controllers/crea
 import MongoClient from "../../database/mongo";
 import User from "../../models/user.model";
 
-class CreateUser implements ICreateUserRepository {
+class CreateUserRepository implements ICreateUserRepository {
     async createUser(params: ICreateUserParams): Promise<User> {
         const { insertedId } = await MongoClient.db.collection('users').insertOne(params)
         const user = await MongoClient.db
@@ -20,4 +20,4 @@ class CreateUser implements ICreateUserRepository {
 
 }
 
-export default CreateUser
+export default CreateUserRepository

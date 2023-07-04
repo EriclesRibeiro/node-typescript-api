@@ -1,4 +1,5 @@
 import User from "../../models/user.model"
+import { HttpRequest, HttpResponse } from "../protocols";
 
 interface ICreateUserParams {
     firstName: string;
@@ -11,7 +12,12 @@ interface ICreateUserRepository {
     createUser(params: ICreateUserParams): Promise<User>
 }
 
+interface ICreateUserController {
+    handle(httpRequest: HttpRequest<ICreateUserParams>): Promise<HttpResponse<User>>
+}
+
 export {
     ICreateUserParams,
-    ICreateUserRepository
+    ICreateUserRepository,
+    ICreateUserController
 }

@@ -3,6 +3,13 @@ interface HttpResponse<T> {
     body: T | string
 }
 
+interface HttpRequest<B> {
+    body?: B;
+    params?: any;
+    headers?: any;
+}
+
 export {
-    HttpResponse
+    HttpResponse,
+    HttpRequest
 }
