@@ -29,7 +29,7 @@ const main = async () => {
         const response = await getUsersController.handler()
         const { body, statusCode } = response
 
-        res.send(body).status(statusCode)
+        res.status(statusCode).send(body)
     })
 
     app.post("/users", async (req: Request, res: Response) => {
@@ -39,7 +39,7 @@ const main = async () => {
         const response = await createUserController.handle({ body: req.body })
         const { body, statusCode } = response
 
-        res.send(body).status(statusCode)
+        res.status(statusCode).send(body)
     })
 
     app.listen(PORT, () => log(`.:listening on port ${PORT}:.`))
