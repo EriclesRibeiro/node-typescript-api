@@ -9,7 +9,7 @@ const MongoClient = {
     async connect(): Promise<void> {
         const URI = mongoURI()
         const client = new Mongo(URI as string)
-        const db = client.db("users-db")
+        const db = client.db("express-api")
 
         this.client = client
         this.db = db
