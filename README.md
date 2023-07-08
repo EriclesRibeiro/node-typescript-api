@@ -1,5 +1,5 @@
 # Node-Typescript-API
-Nesse projeto foi criado rotas para gerenciamento com funções para criar, editar, atualizar e deletar usuários
+Nesse projeto foram criadas rotas para gerenciamento com funções para criar, editar, atualizar e deletar usuários.
 A utilização de Repository Pattern tornou a implementação bem mais eficiente e a separação de arquivos deixou um código muito mais limpo e fácil de modificar.
 
 ## Libs
