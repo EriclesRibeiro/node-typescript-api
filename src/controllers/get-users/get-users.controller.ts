@@ -1,6 +1,7 @@
-import { IGetUsersController, IGetUsersRepository } from "./protocols";
+import { IController } from "../protocols";
+import { IGetUsersRepository } from "./protocols";
 
-class GetUsersController implements IGetUsersController {
+class GetUsersController implements IController {
 
     /**
      * Simplificando a atribuição de propriedade do 
@@ -8,7 +9,7 @@ class GetUsersController implements IGetUsersController {
      */
     constructor(private readonly getUsersRepository: IGetUsersRepository) { }
 
-    async handler() {
+    async handle() {
         try {
             const users = await this.getUsersRepository.getUsers()
             return {

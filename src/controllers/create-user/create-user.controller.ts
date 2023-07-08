@@ -1,10 +1,10 @@
 import User from "../../models/user.model";
-import { HttpRequest, HttpResponse } from "../protocols";
-import { ICreateUserController, ICreateUserParams, ICreateUserRepository } from "./protocols";
+import { HttpRequest, HttpResponse, IController } from "../protocols";
+import { ICreateUserParams, ICreateUserRepository } from "./protocols";
 import verifyEmptyObject from "../../utils/verify-empty-object";
 import validator from "validator";
 
-class CreateUserController implements ICreateUserController {
+class CreateUserController implements IController {
 
     constructor(private readonly createUserRepository: ICreateUserRepository) { }
 
