@@ -30,7 +30,7 @@ const main = async () => {
         const getUsersRepository = new GetUsersRepository()
         const getUsersController = new GetUsersController(getUsersRepository)
 
-        const response = await getUsersController.handler()
+        const response = await getUsersController.handle()
         const { body, statusCode } = response
 
         res.status(statusCode).send(body)

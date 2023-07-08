@@ -1,27 +1,18 @@
 import User from "../../models/user.model";
+import { badRequest, ok, serverError } from "../helpers";
 import { HttpRequest, HttpResponse, IController } from "../protocols";
 import { IUpdateUserParams, IUpdateUserRepository } from "./protocols";
 
 class UpdateUserController implements IController {
     constructor(private readonly updateUserRepository: IUpdateUserRepository) { }
-    async handle(httpRequest: HttpRequest<IUpdateUserParams>): Promise<HttpResponse<User>> {
+    async handle(httpRequest: HttpRequest<IUpdateUserParams>): Promise<HttpResponse<User | string>> {
         try {
             const id = httpRequest?.params?.id
             const body = httpRequest?.body
 
-            if (!id) {
-                return {
-                    statusCode: 400,
-                    body: 'Missing user id'
-                }
-            }
+            if (!id) return badRequest('Missing user id')
 
-            if (!body) {
-                return {
-                    statusCode: 400,
-                    body: 'Body missing fields'
-                }
-            }
+            if (!body) return badRequest('Body missing fields')
 
             const allowedFieldsToUpdated: (keyof IUpdateUserParams)[] = [
                 "firstName",
@@ -33,24 +24,13 @@ class UpdateUserController implements IController {
                 .some(key => !allowedFieldsToUpdated
                     .includes(key as keyof IUpdateUserParams))
 
-            if (someFieldIsNotAllowedToUpdated) {
-                return {
-                    statusCode: 400,
-                    body: 'Some received field is not allowed'
-                }
-            }
+            if (someFieldIsNotAllowedToUpdated) return badRequest('Some received field is not allowed')
 
             const user = await this.updateUserRepository.updateUser(id, body)
 
-            return {
-                statusCode: 200,
-                body: user
-            }
+            return ok<User>(user)
         } catch (error) {
-            return {
-                statusCode: 500,
-                body: 'Something went wrong'
-            }
+            return serverError()
         }
     }
 }

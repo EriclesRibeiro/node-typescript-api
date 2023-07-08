@@ -1,6 +1,6 @@
 interface HttpResponse<T> {
     statusCode: number;
-    body: T | string
+    body: T
 }
 
 interface HttpRequest<B> {
