@@ -1,29 +1,29 @@
-import { HttpResponse } from "./protocols"
+import { HttpResponse, HttpStatusCode } from "./protocols"
 
 const created = <T>(body: any): HttpResponse<T> => {
     return {
-        statusCode: 201,
+        statusCode: HttpStatusCode.CREATED,
         body
     }
 }
 
 const ok = <T>(body: any): HttpResponse<T> => {
     return {
-        statusCode: 200,
+        statusCode: HttpStatusCode.OK,
         body
     }
 }
 
 const badRequest = (message: string): HttpResponse<string> => {
     return {
-        statusCode: 400,
+        statusCode: HttpStatusCode.BAD_REQUEST,
         body: message
     }
 }
 
 const serverError = (): HttpResponse<string> => {
     return {
-        statusCode: 500,
+        statusCode: HttpStatusCode.SERVER_ERROR,
         body: 'Something went wrong'
     }
 }
